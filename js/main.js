@@ -52,22 +52,21 @@ $(function () {
         var _index = $(this).index();
         $('.img').stop().animate({left: -_index * 600}, 150);
         $('.num li').eq(_index).addClass('active').siblings().removeClass('active');
-    })
+    });
     //定时器自动播放
     timer = setInterval(function () {
-        i++;
-        if (i == $('.img li').length) {
-            i = 1;
-            $('.img').css({left: 0});
-        }
-        ;
-        $('.img').stop().animate({left: -i * 600}, 300);
-        if (i == $('.img li').length - 1) {
-            $('.num li').eq(0).addClass('active').siblings().removeClass('active');
-        } else {
-            $('.num li').eq(i).addClass('active').siblings().removeClass('active');
-        }
-    }, 2000)
+    i++;
+    if (i == $('.img li').length) {
+        i = 1;
+        $('.img').css({left: 0});
+    }
+    $('.img').stop().animate({left: -i * 600}, 300);
+        if ($('.img li').length - 1 == i) {
+    $('.num li').eq(0).addClass('active').siblings().removeClass('active');
+} else {
+    $('.num li').eq(i).addClass('active').siblings().removeClass('active');
+}
+    }, 2000);
     //鼠标移入，暂停自动播放，移出，开始自动播放
     $('.banner').hover(function () {
         clearInterval(timer);
@@ -78,7 +77,6 @@ $(function () {
                 i = 1;
                 $('.img').css({left: 0});
             }
-            ;
             $('.img').stop().animate({left: -i * 600}, 300);
             if (i == $('.img li').length - 1) {
                 $('.num li').eq(0).addClass('active').siblings().removeClass('active');
