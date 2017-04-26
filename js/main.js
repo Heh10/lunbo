@@ -6,7 +6,7 @@ $(function () {
     var timer = null;
     for (var j = 0; j < $('.img li').length; j++) {
         //创建圆点
-        $('.num').append('<li></li>')
+        $('.num').append('<li></li>');
     }
     //给第一个圆点添加样式
     $('.num li').first().addClass('active');
@@ -50,6 +50,7 @@ $(function () {
     //鼠标划入圆点
     $('.num li').mouseover(function () {
         var _index = $(this).index();
+        i = _index;
         $('.img').stop().animate({left: -_index * 600}, 150);
         $('.num li').eq(_index).addClass('active').siblings().removeClass('active');
     });
