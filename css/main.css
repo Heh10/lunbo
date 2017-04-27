@@ -3,6 +3,12 @@
     padding: 0;
 }
 
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 ul {
     list-style: none;
 }
@@ -11,7 +17,6 @@ ul {
     width: 600px;
     height: 450px;
     border: 2px solid #ccc;
-    margin: 0 auto;
     position: relative;
     overflow: hidden;
 }
