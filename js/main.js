@@ -2,36 +2,34 @@
  * Created by Administrator on 2017/4/26.
  */
 $(function () {
+
     var i = 0;
     var timer = null;
+
     for (var j = 0; j < $('.img li').length; j++) {
-        //创建圆点
         $('.num').append('<li></li>');
     }
-    //给第一个圆点添加样式
+
     $('.num li').first().addClass('active');
-    //复制第一张图片
+
     var firstimg = $('.img li').first().clone();
-    //将第一张图片放到最后一张图片后，设置ul的宽度为图片张数*图片宽度
+
     $('.img').append(firstimg).width($('.img li').length * ($('.img img').width()));
-    // 下一个按钮
+
     $('.next').click(function () {
         i++;
         if (i == $('.img li').length) {
-            //这里不是i=0
             i = 1;
-            //保证无缝轮播，设置left值
             $('.img').css({left: 0});
         }
         $('.img').stop().animate({left: -i * 600}, 300);
-        //设置小圆点指示
         if (i == $('.img li').length - 1) {
             $('.num li').eq(0).addClass('active').siblings().removeClass('active');
         } else {
             $('.num li').eq(i).addClass('active').siblings().removeClass('active');
         }
     });
-    //上一个按钮
+
     $('.prev').click(function () {
         i--;
         if (i == -1) {
@@ -41,34 +39,34 @@ $(function () {
         $('.img').stop().animate({left: -i * 600}, 300);
         $('.num li').eq(i).addClass('active').siblings().removeClass('active');
     });
-    //设置按钮的显示和隐藏
+
     $('.banner').hover(function () {
         $('.btn').show();
     }, function () {
         $('.btn').hide();
     });
-    //鼠标划入圆点
+
     $('.num li').mouseover(function () {
         var _index = $(this).index();
         i = _index;
         $('.img').stop().animate({left: -_index * 600}, 150);
         $('.num li').eq(_index).addClass('active').siblings().removeClass('active');
     });
-    //定时器自动播放
+
     timer = setInterval(function () {
-    i++;
-    if (i == $('.img li').length) {
-        i = 1;
-        $('.img').css({left: 0});
-    }
-    $('.img').stop().animate({left: -i * 600}, 300);
+        i++;
+        if (i == $('.img li').length) {
+            i = 1;
+            $('.img').css({left: 0});
+        }
+        $('.img').stop().animate({left: -i * 600}, 300);
         if ($('.img li').length - 1 == i) {
-    $('.num li').eq(0).addClass('active').siblings().removeClass('active');
-} else {
-    $('.num li').eq(i).addClass('active').siblings().removeClass('active');
-}
+            $('.num li').eq(0).addClass('active').siblings().removeClass('active');
+        } else {
+            $('.num li').eq(i).addClass('active').siblings().removeClass('active');
+        }
     }, 2000);
-    //鼠标移入，暂停自动播放，移出，开始自动播放
+
     $('.banner').hover(function () {
         clearInterval(timer);
     }, function () {
